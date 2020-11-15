@@ -104,7 +104,7 @@ highPopFirst['County Name']
 #################################
 ######## ACTUAL DEV CODE ########
 #################################
-# First field: County Name/sum of the country with the high population sum
+# First field: County Name/sum of the country with the high population sum --
 highPopCounty = pops.loc[pops.population >= 500000, ['County Name', 'population']]
 highPopCountySorted = highPopCounty.groupby('County Name').population.agg(['sum']).sort_values(by=['sum'],ascending=False)
 highPopCountySorted.head(1)
