@@ -11,6 +11,7 @@
 
 # If the county population is less than 500k, get the state daily difference
 
+# First put it in
 ########################################
 ### IMPORTS NEEDED FOR ALL LIBRARIES ###
 ########################################
@@ -108,3 +109,53 @@ highPopFirst['County Name']
 highPopCounty = pops.loc[pops.population >= 500000, ['County Name', 'population']]
 highPopCountySorted = highPopCounty.groupby('County Name').population.agg(['sum']).sort_values(by=['sum'],ascending=False)
 highPopCountySorted.head(1)
+
+# Find the difference between two days for all counties
+ccs['New'] = ccs['11/9/2020'] - ccs['11/8/2020']
+
+# Find the difference between two days for all counties with populations >= 500K
+ccs['New'] = ccs['11/9/2020'] - ccs['11/8/2020']
+
+# Find the difference between two days for all states where the associated counties have populations < 500K
+ccs['New'] = ccs['11/9/2020'] - ccs['11/8/2020']
+
+### RESET NEW DATA FRAME ###
+ccsCalc = 1
+# Create a new data frame to show the:
+## County Names
+## Two days to compare
+## Difference in the amount of cases for the days being compared
+ccsCalc = pd.DataFrame()
+# Add a column to the df with the county names
+ccsCalc['County Name'] = ccs['County Name']
+# Create variables for the days
+day1 = '11/8/2020'
+day2 = '11/9/2020'
+# Add a column to the df with the cases of day 1
+ccsCalc[day1] = ccs[day1]
+# Add a column to the df with the difference of cases between day1 and day2
+ccsCalc['Cases diff between days'] = ccs[day2] - ccs[day1]
+# Add a column to the df with the cases of day2
+ccsCalc[day2] = ccs[day2]
+# Return data frame
+ccsCalc
+
+# ### RESET NEW DATA FRAME ###
+# ccsCalc500k = 1
+# # Create a new data frame to show the:
+# ## County names where county population is greater than 500k
+# ## Two days to compare from the counties with populations greater than 500k
+# ## Difference in the amount of cases for the days being compared
+# ccsCalc500k = pd.DataFrame()
+# # Add a column to the df with the county names where county population is greater than 500k
+# ccsCalc500k['County Name'] = pops[pops.population >= 500000]['County Name']
+# # Add a column to the df with the sum of the county populations where county population is greater than 500k
+# ccsCalc500k['County Population Sums'] = pops[pops.population >= 500000]['population']
+# # Add a column to the df with the cases of day 1 where county population is greater than 500k
+# ccsCalc500k[day1] =  pops[pops.population >= 500000][day1]
+# # Add a column to the df with the difference of cases between day1 and day2 where county population is greater than 500k
+# ccsCalc500k['Cases diff between days'] = pops[pops.population >= 500000][day2] - pops[pops.population >= 500000][day1]
+# # Add a column to the df with the cases of day2 where county population is greater than 500k
+# ccsCalc500k[day2] = pops[pops.population >= 500000][day2]
+# # Return data frame
+# ccsCalc500k
