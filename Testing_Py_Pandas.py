@@ -150,7 +150,9 @@ ccsCalc
 # # Add a column to the df with the county names where county population is greater than 500k
 # ccsCalc500k['County Name'] = pops[pops.population >= 500000]['County Name']
 # # Add a column to the df with the sum of the county populations where county population is greater than 500k
-# ccsCalc500k['County Population Sums'] = pops[pops.population >= 500000]['population']
+# if ccs.iloc[:, 4:1000].sum(axis = 1) < 500000:
+#     ccsState = pops[pops.State = ccs.State]['State']
+# ccsCalc500k['County Population Sums'] =
 # # Add a column to the df with the cases of day 1 where county population is greater than 500k
 # ccsCalc500k[day1] =  pops[pops.population >= 500000][day1]
 # # Add a column to the df with the difference of cases between day1 and day2 where county population is greater than 500k
